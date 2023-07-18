@@ -30,7 +30,7 @@ const Header = () => {
     
           ctx.setIsAuthenticated(false);
             
-          ctx.setIsLoading(true);
+          ctx.setIsLoading(false);
         } catch (error) {
           // console.log("Login Error: " + error);
           toast.error(error.response.data.message);

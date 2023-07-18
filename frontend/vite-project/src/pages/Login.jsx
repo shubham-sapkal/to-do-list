@@ -65,7 +65,7 @@ const Login = () => {
         <form onSubmit={submitHandler} >
           <input type="email" value={email}  placeholder='Email' onChange={emailChangeHandler}/>
           <input type="password" value={password} placeholder='Password' onChange={passwordChangeHandler} />
-          <button type="submit" disabled={ctx.loading}>Sign Up</button>
+          <button type="submit" disabled={ctx.loading}>Sign In</button>
           <h4>OR</h4>
           <Link to="/register">Sign Up</Link>
         </form>

@@ -6,8 +6,39 @@ import Register from "./pages/Register";
 import Login from "./pages/Login";
 import Profile from "./pages/Profile";
 import { Toaster } from "react-hot-toast";
+import { useContext, useEffect } from "react";
+
+import axios from "axios";
+import { Context, server } from "./main";
 
 function App() {
+
+  const { setUser, isAuthenticated ,setIsAuthenticated, loading, setIsLoading } = useContext(Context);
+
+  useEffect(() => {
+
+    setIsLoading(true);
+
+    axios.get(`${server}/users/profile`,
+    {
+      withCredentials: true
+    })
+    .then( res =>{
+      setUser(res.data.user);
+      console.log("user= " + res.data.user);
+      setIsAuthenticated(true);
+      setIsLoading(false);
+    })
+    .catch((error) => {
+      console.log(error.response.data.message)
+      setUser({});
+      setIsAuthenticated(false);
+      setIsLoading(false);
+    });
+
+
+
+  }, [isAuthenticated]);
 
   return (
     <Router>
